@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#2f6b3a" />
+  <meta name="description" content="BalanceU - a student study-life balance, wellbeing and health planning prototype." />
+  <title>BalanceU</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="stage">
+    <aside class="brief" aria-label="About BalanceU">
+      <div class="eyebrow">Good Health &amp; Well-Being · Study-Life Balance</div>
+      <h1>BalanceU</h1>
+      <p class="lede">Plan your studies, protect recovery time, build healthy routines, and see how your day is going in one place.</p>
+      <p class="pov"><strong>Point of view.</strong> Students managing competing academic and personal commitments need realistic ways to protect time for rest and well-being because fixed schedules, travel, and work demands can reduce flexibility and recovery time.</p>
+
+      <section class="brief-card">
+        <h2>What the prototype now covers</h2>
+        <div class="feature-grid">
+          <span>Daily balance dashboard</span><span>Study &amp; task planner</span>
+          <span>Break &amp; inactivity nudges</span><span>Meal-time planner</span>
+          <span>Exercise &amp; habit tracking</span><span>Mood / stress check-ins</span>
+          <span>Recovery &amp; strain dashboard</span><span>Friends leaderboard</span>
+          <span>WHOOP API-ready integration</span><span>Direct BLE live heart rate</span>
+        </div>
+      </section>
+
+      <section class="brief-card small-copy">
+        <h2>Prototype note</h2>
+        <p>The core app works entirely in your browser. WHOOP account sync needs the included secure backend and valid WHOOP access. Friends are a local prototype until a shared database/auth layer is connected.</p>
+      </section>
+    </aside>
+
+    <section class="phone" id="app" aria-label="BalanceU app prototype">
+      <header class="app-head">
+        <div>
+          <div class="brand-row"><span class="leaf-mark" aria-hidden="true">◆</span><span class="logo">BalanceU</span></div>
+          <h2 id="screenTitle">Today</h2>
+        </div>
+        <div class="head-actions">
+          <button class="icon-btn" id="quickTheme" type="button" aria-label="Toggle light and dark theme" title="Toggle theme">◐</button>
+          <div class="date" id="today"></div>
+        </div>
+      </header>
+
+      <main class="screen" id="s-today" data-screen="today"></main>
+      <main class="screen" id="s-plan" data-screen="plan" hidden></main>
+      <main class="screen" id="s-health" data-screen="health" hidden></main>
+      <main class="screen" id="s-check" data-screen="check" hidden></main>
+      <main class="screen" id="s-friends" data-screen="friends" hidden></main>
+      <main class="screen" id="s-settings" data-screen="settings" hidden></main>
+
+      <nav class="tabs" role="tablist" aria-label="App sections">
+        <button role="tab" data-tab="today" aria-selected="true"><span aria-hidden="true">⌂</span><small>Today</small></button>
+        <button role="tab" data-tab="plan" aria-selected="false"><span aria-hidden="true">▣</span><small>Plan</small></button>
+        <button role="tab" data-tab="health" aria-selected="false"><span aria-hidden="true">♥</span><small>Health</small></button>
+        <button role="tab" data-tab="check" aria-selected="false"><span aria-hidden="true">☺</span><small>Check-in</small></button>
+        <button role="tab" data-tab="friends" aria-selected="false"><span aria-hidden="true">♟</span><small>Friends</small></button>
+        <button role="tab" data-tab="settings" aria-selected="false"><span aria-hidden="true">⚙</span><small>Settings</small></button>
+      </nav>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <noscript>BalanceU needs JavaScript enabled to run this prototype.</noscript>
+  <script src="app.js" defer></script>
+</body>
+</html>
