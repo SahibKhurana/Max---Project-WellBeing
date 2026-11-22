@@ -17,49 +17,88 @@ body{background:var(--bg);min-height:100vh;isolation:isolate;overflow-x:hidden}
 @media(max-width:930px){.presentation{grid-template-columns:minmax(0,1fr);max-width:610px;padding:18px 15px;gap:15px}.phone-wrap{order:-1}.phone{position:relative;top:0;height:min(82vh,790px);min-height:590px;border-width:4px}.project-story{padding:18px 5px}.project-title{font-size:72px}.phone-caption{margin:9px 0}}
 @media(max-width:480px){.presentation{padding:4px 0}.phone{border-radius:0;border:0;height:100dvh;min-height:570px}.phone #view{padding:15px 13px 25px}.phone .metric b{font-size:19px}.phone .metric span{font-size:10px}.phone #nav{padding-bottom:max(10px,env(safe-area-inset-bottom))}.project-story{padding:22px 18px}.phone-caption{display:none}}
 
+
+/* BalanceU v3 — editorial botanical landing and refined mobile product */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap');
+:root{--bg:#f6f8ed;--paper:#fffefa;--soft:#f0f5eb;--ink:#1c3329;--muted:#67786d;--line:#dfe9dd;--accent:#286c48;--accentInk:#fff;--gold:#edc976;--peach:#f9dfd0;font-family:'DM Sans',Inter,system-ui,sans-serif}
+:root[data-theme="dark"]{--bg:#101c17;--paper:#1b2b22;--soft:#26392d;--ink:#e8f3e7;--muted:#a6bcae;--line:#3c5443;--accent:#a8dfb4;--accentInk:#173423;--gold:#ab8550;--peach:#4f372d}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);overflow-x:hidden;isolation:isolate}
+.ambient-layer{pointer-events:none;position:absolute;z-index:-1;inset:0 0 auto;height:950px;overflow:hidden;background:radial-gradient(circle at 67% 5%,#f8edc8aa,transparent 32%),radial-gradient(circle at 11% 52%,#d2e7c85e,transparent 36%)}
+.ambient-layer .glow-ball{position:absolute;right:-110px;top:160px;width:350px;height:350px;border-radius:50%;background:#fce8b664;filter:blur(30px)}.ambient-layer .ambient-blob{position:absolute;left:-130px;bottom:-140px;width:70vw;height:330px;border-radius:50%;background:#b8d3ae38;transform:rotate(-13deg)}
+.site-header{max-width:1280px;margin:auto;padding:22px 42px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.site-brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;letter-spacing:-.07em;font-size:25px;text-decoration:none;color:var(--ink)}.brand-mark{width:32px;height:32px;background:var(--accent);color:var(--accentInk);display:grid;place-items:center;border-radius:12px;font-size:22px}.brand-u{color:var(--accent)}.header-links{display:flex;gap:24px;align-items:center}.header-small{color:var(--muted);font-size:10px;letter-spacing:.16em;font-weight:800}.header-cta{border:1px solid var(--line);background:var(--paper);color:var(--ink);font-weight:700;padding:12px 17px;border-radius:100px;font-size:12px;box-shadow:0 8px 22px #2a5c3320}.header-cta span{margin-left:12px}
+.presentation{max-width:1260px;padding:45px 42px 75px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(330px,405px);gap:clamp(25px,6vw,100px);align-items:start}
+.project-story{padding-top:55px}.overline{font-size:11px;font-weight:800;letter-spacing:.17em;color:var(--accent);display:flex;align-items:center;gap:10px}.overline-dot{height:8px;width:8px;background:#b2c997;border-radius:50%}
+.hero-title{font-family:'Playfair Display',Georgia,serif;font-size:clamp(56px,5.8vw,83px);line-height:1.11;letter-spacing:-.065em;font-weight:600;margin:24px 0 22px;color:var(--ink)}.hero-title em{color:var(--accent);font-weight:500}.hero-description{color:var(--muted);font-size:17px;line-height:1.75;max-width:470px;margin:0}.hero-description strong{color:var(--ink)}
+.hero-actions{display:flex;align-items:center;gap:22px;margin-top:28px}.journey-button{background:var(--accent);border:1px solid var(--accent);color:var(--accentInk);border-radius:100px;padding:18px 24px;font-size:14px;font-weight:800;box-shadow:0 12px 28px #24604437;transition:transform .2s,box-shadow .2s}.journey-button span{padding-left:18px}.journey-button:hover{transform:translateY(-3px);box-shadow:0 17px 30px #24604440}.hero-aside{font-family:'Playfair Display',Georgia,serif;font-style:italic;color:var(--muted);font-size:14px;line-height:1.5}
+.hero-illustration{max-width:535px;position:relative;margin:20px 0 -18px;filter:drop-shadow(0 12px 14px #6088661b)}.hero-art{width:100%;height:auto;display:block}.floating-note{position:absolute;right:-12px;bottom:58px;display:flex;align-items:center;gap:10px;background:var(--paper);box-shadow:0 15px 40px #28533e24;border:1px solid var(--line);border-radius:17px;padding:12px 16px}.floating-note strong{font-size:13px;display:block}.floating-note small{font-size:10px;color:var(--muted)}.note-spark{background:#edf4d9;color:#447c50;width:33px;height:33px;border-radius:12px;display:grid;place-items:center;font-size:22px}.trust-strip{display:flex;flex-wrap:wrap;gap:15px;margin:20px 0;font-size:11px;color:var(--accent);font-weight:700}
+.phone-wrap{position:relative;padding:10px 0 0}.phone-shell{border-radius:45px;background:#1d342b;padding:8px;box-shadow:0 35px 90px #0c352d3b,0 10px 24px #102c2414;transform:rotate(1deg);transition:transform .25s}.phone-shell:hover{transform:rotate(0deg)}.phone{background:var(--paper);height:770px;min-height:0;border-radius:38px;overflow:hidden;display:flex;flex-direction:column;position:relative}.phone-notch{height:17px;width:112px;position:absolute;top:0;left:50%;transform:translateX(-50%);border-radius:0 0 13px 13px;background:#1d342b;z-index:3}
+.phone-header{padding:30px 19px 15px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);gap:10px}.phone-header .brand{font-size:22px;color:var(--accent);font-weight:800;letter-spacing:-.06em}.phone-header .tag{font-size:11px}.phone-header .theme-icon{width:35px;height:35px;border-radius:50%;font-size:18px;flex-shrink:0}
+.phone #view{min-height:0;flex:1;overflow-y:auto;padding:16px 16px 25px;background:var(--paper)}.phone #view h1{font-size:23px;letter-spacing:-.04em;color:var(--ink);font-weight:800}.phone .panel{border:1px solid var(--line);background:var(--paper);padding:15px;border-radius:17px;margin-bottom:12px;box-shadow:0 3px 15px #26573607}.phone .panel h2{font-size:15px}.phone .metric{padding:13px 9px;background:var(--soft);border-radius:14px}.phone .metric b{font-size:22px}.phone .metric span{font-size:10px}.phone .grid{gap:7px;grid-template-columns:repeat(3,minmax(0,1fr))}.phone .notice{background:var(--soft);border-radius:11px;font-size:13px}.phone .item{font-size:13px}.phone .button{font-size:12px;border-radius:10px}.phone .form{grid-template-columns:repeat(2,minmax(0,1fr))}.phone .form .wide{grid-column:1/-1}
+.phone #nav{flex-shrink:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:8px 9px 14px;border-top:1px solid var(--line);background:var(--paper)}.phone .nav{display:block;white-space:normal;line-height:1.2;font-size:10px;text-align:center;padding:9px 3px;margin:0;color:var(--muted);border-radius:9px}.phone .nav.active{color:var(--accentInk);background:var(--accent);font-weight:800}.preview-footnote{font-size:10px;letter-spacing:.11em;color:var(--muted);text-align:center;margin-top:22px}.live-dot{display:inline-block;width:7px;height:7px;background:#6dad7e;border-radius:50%;margin-right:7px}
+.feature-section{max-width:1220px;margin:0 auto;padding:55px 40px 84px}.feature-heading{text-align:center}.feature-heading .overline{justify-content:center}.feature-heading h2{font:600 clamp(36px,4vw,51px)/1.15 'Playfair Display',Georgia,serif;margin:16px 0 9px;letter-spacing:-.045em}.feature-heading h2 em{color:var(--accent);font-weight:500}.feature-heading p{color:var(--muted);font-size:15px}.feature-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-top:35px}.feature-tile{min-height:260px;border-radius:23px;padding:25px 23px;display:flex;flex-direction:column;transition:transform .2s}.feature-tile:hover{transform:translateY(-5px)}.feature-sage{background:#e0ebd3}.feature-cream{background:#f6edda}.feature-peach{background:#f7e1d6}.feature-mint{background:#d6ece3}.feature-tile h3{font:600 22px/1.22 'Playfair Display',Georgia,serif;letter-spacing:-.03em;color:#203b2b;margin:19px 0 7px}.feature-tile p{font-size:12px;line-height:1.65;color:#5d7265}.feature-icon{font-size:30px;color:#32694c;width:49px;height:49px;border-radius:16px;background:#ffffffac;display:grid;place-items:center}.feature-number{margin-top:auto;padding-top:15px;font-size:9px;font-weight:800;letter-spacing:.17em;color:#54735f}
+.research-bottom{background:var(--accent);color:var(--accentInk);padding:62px max(35px,calc((100vw - 1180px)/2));display:grid;grid-template-columns:1fr 1fr;gap:45px}.research-bottom .overline{color:#d4eccd}.research-bottom h2{font:600 38px/1.2 'Playfair Display',Georgia,serif;margin:18px 0}.research-bottom p{line-height:1.8;font-size:14px;opacity:.88}.research-bottom .personas{display:flex;flex-wrap:wrap;gap:9px}.research-bottom .personas span{border:1px solid #ffffff65;padding:7px 10px;border-radius:100px;font-size:11px;color:inherit;background:transparent}
+.site-footer{max-width:1250px;margin:0 auto;padding:29px 40px;display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:var(--accent)}.site-footer span{font-size:11px;font-weight:500;color:var(--muted)}
+.welcome{padding:7px 0 13px}.welcome-illustration{height:167px;background:radial-gradient(circle at 79% 20%,#f4db87 0 10%,transparent 11%),linear-gradient(150deg,#e2f2d6,#c4e0cb);border-radius:19px;overflow:hidden;position:relative;margin-bottom:20px}.welcome-illustration:before{content:'';position:absolute;width:260px;height:150px;background:#8dbe96;border-radius:50%;left:-15px;bottom:-99px;box-shadow:170px -10px 0 5px #a8cfa0}.welcome-illustration:after{content:'✿';position:absolute;font-size:74px;color:#fdf5d8;right:36px;bottom:17px;text-shadow:-70px 21px 0 #507c55}.welcome h1{font:600 33px/1.17 'Playfair Display',Georgia,serif!important;letter-spacing:-.04em!important}.welcome h1 em{color:var(--accent)}.welcome p{color:var(--muted);font-size:14px;line-height:1.7}.welcome-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:20px 0}.welcome-step{border:1px solid var(--line);border-radius:12px;padding:11px 5px;background:var(--soft);font-size:10px;text-align:center;color:var(--accent);font-weight:800}.welcome-steps span{display:block;font-size:23px;margin-bottom:5px}.welcome .button{width:100%;padding:14px;border-radius:13px;font-size:13px}
+:root[data-theme="dark"] .ambient-layer{opacity:.18}:root[data-theme="dark"] .hero-art{opacity:.8}:root[data-theme="dark"] .feature-tile{filter:brightness(.77)}:root[data-theme="dark"] .phone-shell{background:#456550}
+@media(max-width:980px){.presentation{grid-template-columns:1fr;max-width:690px;padding:10px 23px 65px;gap:22px}.project-story{padding-top:32px}.phone-wrap{width:min(430px,100%);margin:5px auto}.hero-illustration{max-width:510px;margin:10px auto 0}.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.site-header{padding:22px}.hero-title{font-size:clamp(52px,10vw,76px)}}
+@media(max-width:600px){.site-header{padding:16px}.header-small{display:none}.header-cta{font-size:11px;padding:9px 13px}.presentation{padding:12px 13px 50px}.project-story{padding:28px 7px 0}.hero-title{font-size:clamp(47px,12vw,65px)}.hero-description{font-size:15px}.hero-actions{gap:11px}.journey-button{font-size:12px;padding:15px 18px}.hero-aside{font-size:11px}.floating-note{right:0;bottom:30px;padding:8px 10px}.phone-wrap{max-width:395px}.phone{height:710px}.feature-section{padding:38px 17px 55px}.feature-grid{gap:10px}.feature-tile{padding:17px 15px;min-height:245px}.feature-tile h3{font-size:19px}.research-bottom{grid-template-columns:1fr;padding:38px 23px;gap:10px}.site-footer{padding:23px;gap:20px;flex-wrap:wrap}.phone-shell{transform:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.phone-shell,.feature-tile,.journey-button{transition:none!important}}
 </style></head><body>
-<div class="landscape" aria-hidden="true"><span class="sun"></span><span class="hill hill-one"></span><span class="hill hill-two"></span><span class="reed reed-one"></span><span class="reed reed-two"></span></div>
-<div class="presentation">
-  <section class="project-story" aria-label="Project presentation">
-    <span class="eyebrow">GOOD HEALTH &amp; WELL-BEING · STUDY-LIFE BALANCE</span>
-    <div class="project-label">A design-thinking project</div>
-    <h1 class="project-title">Balance<span>U</span></h1>
-    <p class="project-lede">Your balance, one day at a time.</p>
-    <p class="project-description">A student well-being app to organize academic responsibilities and protect time for <strong>rest, exercise, meals and connection</strong>.</p>
-    <section class="research-panel">
-      <div class="panel-eyebrow">THE PROBLEM WE ARE SOLVING</div>
-      <p>University students managing competing academic and personal commitments need realistic ways to protect time for rest and well-being, because fixed schedules, travel and work demands reduce flexibility and recovery time.</p>
-    </section>
-    <h2 class="research-title">From our interviews to the app</h2>
-    <div class="research-links">
-      <div><span>Deadlines and time pressure</span><b>→ Daily task planner</b></div>
-      <div><span>Irregular sleep and recovery</span><b>→ Rest and check-ins</b></div>
-      <div><span>Stress and academic pressure</span><b>→ Mood and stress reflection</b></div>
-      <div><span>Exercise and meals overlooked</span><b>→ Movement and meal routines</b></div>
-    </div>
-    <p class="personas-label">DESIGNED AROUND THREE STUDENT ROUTINES</p>
-    <div class="personas"><span>Classroom Focuser</span><span>Campus Athlete</span><span>Working Senior</span></div>
-    <p class="project-foot">Built around the Good Health &amp; Well-Being presentation · Prototype data stays in this browser</p>
-  </section>
-  <section class="phone-wrap" aria-label="Interactive BalanceU app">
-    <div class="phone">
-      <header class="phone-header"><div><div class="brand">✳ BalanceU</div><div class="tag">Study well. Live well.</div></div><button class="tiny theme-icon" id="quickTheme" aria-label="Switch light or dark appearance">◐</button></header>
-      <main id="view" aria-live="polite"></main>
-      <nav id="nav" aria-label="BalanceU app pages"></nav>
-    </div>
-    <p class="phone-caption">INTERACTIVE APP PROTOTYPE · TRY THE TABS ABOVE</p>
-  </section>
+<div class="ambient-layer" aria-hidden="true"><span class="glow-ball"></span><span class="ambient-blob"></span></div>
+<header class="site-header">
+ <a class="site-brand" href="#home" id="homeLink"><span class="brand-mark">✳</span><span>Balance<span class="brand-u">U</span></span></a>
+ <div class="header-links"><span class="header-small">STUDENT WELL-BEING, REIMAGINED</span><button class="header-cta" id="jumpApp">Explore the app <span>↗</span></button></div>
+</header>
+<div class="presentation" id="home">
+ <section class="project-story">
+   <div class="overline"><span class="overline-dot"></span> SDG 3 · GOOD HEALTH AND WELL-BEING</div>
+   <h1 class="hero-title">A healthier way<br>to <em>student life.</em></h1>
+   <p class="hero-description">Your studies matter. <strong>So do you.</strong> Make room for the little things that keep you feeling your best — one day at a time.</p>
+   <div class="hero-actions"><button class="journey-button" id="startJourney">Start your journey <span>↗</span></button><span class="hero-aside">Your day. Your pace.<br>A little more balance.</span></div>
+   <div class="hero-illustration"><svg class="hero-art" viewBox="0 0 520 490" role="img" aria-label="Decorative green leaves and a sunny garden with a winding path" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="leafgrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#4f875b"/><stop offset="1" stop-color="#194e39"/></linearGradient><linearGradient id="hillgrad" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d2e6bc"/><stop offset="1" stop-color="#9fc89b"/></linearGradient></defs>
+<circle cx="361" cy="112" r="68" fill="#fff2bd" opacity=".92"/>
+<path d="M0 332 Q125 230 248 310 T520 274V490H0Z" fill="#dcebc8"/>
+<path d="M0 397Q143 294 272 363T520 335V490H0Z" fill="url(#hillgrad)"/>
+<path d="M215 490Q268 424 244 378Q221 333 300 309Q286 345 322 380Q365 441 340 490Z" fill="#f4e8c4"/>
+<path d="M50 490Q36 286 88 133" fill="none" stroke="#38694a" stroke-width="8" stroke-linecap="round"/>
+<path d="M87 190Q14 164 12 99Q80 119 87 190M79 254Q151 196 160 134Q91 161 79 254M64 337Q-10 290 1 227Q64 250 64 337M77 290Q154 256 175 212Q110 222 77 290" fill="url(#leafgrad)"/>
+<path d="M464 490Q480 309 436 149" fill="none" stroke="#366648" stroke-width="7" stroke-linecap="round"/>
+<path d="M439 200Q491 145 488 87Q436 110 439 200M453 278Q384 216 374 162Q439 188 453 278M472 356Q524 308 520 242Q466 269 472 356M466 411Q400 370 378 313Q440 340 466 411" fill="#396e50"/>
+<path d="M115 490Q107 401 155 350M141 489Q171 415 197 394M384 490Q390 415 352 361" stroke="#4c815c" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M155 350Q103 326 95 287Q146 302 155 350M155 350Q209 326 215 281Q167 298 155 350M196 396Q218 349 256 333Q238 388 196 396M354 366Q311 342 306 307Q348 318 354 366M354 366Q392 328 404 290Q356 306 354 366" fill="#79a36c"/>
+<g fill="#fff9eb"><circle cx="171" cy="438" r="8"/><circle cx="184" cy="438" r="8"/><circle cx="178" cy="428" r="8"/><circle cx="178" cy="446" r="8"/><circle cx="408" cy="449" r="8"/><circle cx="420" cy="449" r="8"/><circle cx="414" cy="438" r="8"/><circle cx="414" cy="457" r="8"/></g><circle cx="178" cy="438" r="5" fill="#d5a955"/><circle cx="414" cy="449" r="5" fill="#d5a955"/>
+</svg><div class="floating-note"><span class="note-spark">✦</span><div><strong>Grow at your own pace.</strong><small>Every small step counts.</small></div></div></div>
+   <div class="trust-strip"><span>◉ Mindful routines</span><span>◉ Better rest</span><span>◉ Everyday movement</span></div>
+ </section>
+ <section class="phone-wrap" id="appPreview"><div class="phone-shell"><div class="phone"><div class="phone-notch"></div>
+ <header class="phone-header"><div><div class="brand">✳ BalanceU</div><div class="tag">Little steps. Better days.</div></div><button class="tiny theme-icon" id="quickTheme" aria-label="Toggle dark theme">◐</button></header>
+ <main id="view" aria-live="polite"></main><nav id="nav" aria-label="BalanceU app pages"></nav>
+ </div></div><div class="preview-footnote"><span class="live-dot"></span> THE INTERACTIVE BALANCEU EXPERIENCE</div></section>
 </div>
+<section class="feature-section" id="features">
+ <div class="feature-heading"><span class="overline">DESIGNED FOR REAL STUDENT LIFE</span><h2>One space for <em>all of you.</em></h2><p>Because well-being is more than finishing your to-do list.</p></div>
+ <div class="feature-grid">
+ <article class="feature-tile feature-sage"><span class="feature-icon">◷</span><h3>Make room for life</h3><p>Plan classes, deadlines, breaks and free time in one easy routine.</p><span class="feature-number">01 / PLAN</span></article>
+ <article class="feature-tile feature-cream"><span class="feature-icon">♡</span><h3>Check in with yourself</h3><p>Reflect on your mood, stress and sleep without the pressure to be perfect.</p><span class="feature-number">02 / FEEL</span></article>
+ <article class="feature-tile feature-peach"><span class="feature-icon">✺</span><h3>Build better habits</h3><p>Remember your meals, move a little and celebrate consistency.</p><span class="feature-number">03 / GROW</span></article>
+ <article class="feature-tile feature-mint"><span class="feature-icon">✧</span><h3>Better together</h3><p>Stay motivated with friends and celebrate healthy progress.</p><span class="feature-number">04 / CONNECT</span></article>
+ </div>
+</section>
+<section class="research-bottom"><div><span class="overline">BACKED BY STUDENT RESEARCH</span><h2>Balance looks different<br>for everyone.</h2></div><div><p>Our interviews identified three routines — the Classroom Focuser, Campus Athlete and Working Senior. Each faces deadlines, fatigue and competing commitments. BalanceU helps students plan around their own lives, not someone else's ideal schedule.</p><div class="personas"><span>Classroom Focuser</span><span>Campus Athlete</span><span>Working Senior</span></div></div></section>
+<footer class="site-footer">✳ BalanceU <span>Made for study-life balance · Student project prototype</span></footer>
 <script>
 (function(){
 'use strict';
-var sections=[['today','🏡 Today'],['plan','📅 Planner'],['meals','🥗 Meals'],['health','❤️ Health'],['check','😊 Check-in'],['habits','✅ Habits'],['friends','🏆 Friends'],['settings','⚙️ Settings']];
+var sections=[['welcome','✦ Start'],['today','🏡 Today'],['plan','📅 Planner'],['meals','🥗 Meals'],['health','❤️ Health'],['check','😊 Check-in'],['habits','✅ Habits'],['friends','🏆 Friends'],['settings','⚙️ Settings']];
 var dateKey=function(d){var x=d||new Date();return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
 var today=dateKey(), week=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 var defaults={theme:'light',tasks:[],meals:{},checks:{},moves:{},friends:[],goals:{activity:30,mealWindow:60},prefs:{remind:true,notifications:false},hr:null};
 var S;try{S=Object.assign({},defaults,JSON.parse(localStorage.getItem('balanceu-preview-v2')||'{}'))}catch(_){S=Object.assign({},defaults)}
 S.tasks=Array.isArray(S.tasks)?S.tasks:[];S.friends=Array.isArray(S.friends)?S.friends:[];S.meals=S.meals||{};S.checks=S.checks||{};S.moves=S.moves||{};S.goals=Object.assign({},defaults.goals,S.goals||{});S.prefs=Object.assign({},defaults.prefs,S.prefs||{});
-var page='today',day=today,bleDevice=null,bleCharacteristic=null;
+var page=(localStorage.getItem('balanceu-journey-started')==='yes'?'today':'welcome'),day=today,bleDevice=null,bleCharacteristic=null;
 var $=function(x){return document.getElementById(x)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var save=function(){try{localStorage.setItem('balanceu-preview-v2',JSON.stringify(S))}catch(_){alert('Browser storage unavailable. Your changes may not be saved.')}}
@@ -78,6 +117,7 @@ var top=function(s){return '<h1>'+s+'</h1>'};
 function render(){document.documentElement.dataset.theme=S.theme==='system'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):S.theme;
 $('nav').innerHTML=sections.map(function(x){return '<button class="nav '+(page===x[0]?'active':'')+'" data-page="'+x[0]+'">'+x[1]+'</button>'}).join('');
 var out='',m=getMeals(day),active=move(today),checkToday=check(today);
+if(page==='welcome'){out='<section class="welcome"><div class="welcome-illustration"></div><span class="overline">YOUR WELL-BEING STARTS HERE</span><h1>Small steps.<br><em>A better balance.</em></h1><p>More than a to-do list. BalanceU helps you plan your day, remember to rest, eat regularly and move in ways that work for you.</p><div class="welcome-steps"><div class="welcome-step"><span>☷</span>Plan</div><div class="welcome-step"><span>♡</span>Feel</div><div class="welcome-step"><span>✿</span>Grow</div></div><button class="button" data-action="begin">Let’s get started →</button><p style="text-align:center;font-size:11px">Your data stays in this browser.</p></section>'}
 if(page==='today'){out=top('Your daily balance')+'<div class="grid">'+metric(balance(today)+'%','Balance score (self-reported)')+metric(active+' min','Movement logged')+metric(doneMeals(today)+'/3','Meals completed')+'</div>'+
 card('One step at a time','<p class="notice">'+(active<S.goals.activity?'A little movement can help you reset today. A short walk or stretch counts.':'Your movement goal is logged for today. Remember to recover, too.')+'</p><div class="actions"><button class="button" data-action="move10">+10 active min</button><button class="button outline" data-page="plan">Open planner</button></div>')+
 card('Today’s schedule',tasksHTML(today))+
@@ -97,6 +137,7 @@ if(page==='settings'){out=top('Settings')+card('Appearance','<label>Background t
 $('view').innerHTML=out+'<footer>BalanceU student prototype · Not a medical device · Private browser-only storage by default</footer>';
 }
 document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var p=b.dataset.page,a=b.dataset.action;if(p){page=p;render();return}
+if(a==='begin'){localStorage.setItem('balanceu-journey-started','yes');page='today';render();return}
 if(a==='task'){var t=S.tasks.find(function(t){return t.id===b.dataset.id});if(t)t.done=!t.done}
 if(a==='delete'){S.tasks=S.tasks.filter(function(t){return t.id!==b.dataset.id})}
 if(a==='move10'||a==='move30'){S.moves[today]=move(today)+(a==='move10'?10:30)}
@@ -115,6 +156,9 @@ if(e.target.id==='planDate'||e.target.id==='mealDate'){day=e.target.value;render
 if(e.target.hasAttribute('data-mealtime'))getMeals(day)[Number(e.target.dataset.mealtime)].time=e.target.value;
 if(e.target.hasAttribute('data-mealactual'))getMeals(day)[Number(e.target.dataset.mealactual)].actual=e.target.value;
 save();render()});
+$('startJourney').onclick=function(){page='welcome';render();$('appPreview').scrollIntoView({behavior:'smooth',block:'start'})};
+$('jumpApp').onclick=function(){page='welcome';render();$('appPreview').scrollIntoView({behavior:'smooth',block:'start'})};
+$('homeLink').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
 $('quickTheme').onclick=function(){S.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';save();render()};
 async function connectBLE(){var el=$('bleStatus');try{if(!navigator.bluetooth)throw Error('Web Bluetooth is unavailable here. Try desktop Chrome or Edge over HTTPS.');bleDevice=await navigator.bluetooth.requestDevice({filters:[{services:['heart_rate']}]});var g=await bleDevice.gatt.connect(),s=await g.getPrimaryService('heart_rate'),c=await s.getCharacteristic('heart_rate_measurement');await c.startNotifications();bleCharacteristic=c;c.addEventListener('characteristicvaluechanged',function(ev){var d=ev.target.value,flags=d.getUint8(0);S.hr=(flags&1)?d.getUint16(1,true):d.getUint8(1);save();if(page==='health')render()});el.textContent='Connected to Bluetooth heart-rate stream.'}catch(err){if(el)el.textContent=err.message}}
 render();
