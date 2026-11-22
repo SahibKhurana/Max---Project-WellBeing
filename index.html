@@ -116,6 +116,14 @@ body{background:var(--bg);color:var(--ink);overflow-x:hidden;isolation:isolate}
 /* Planner filters and urgency system */
 .planner-manager{padding:22px 17px!important}.planner-manager .section-heading{margin-bottom:16px}.planner-filter-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:18px}.planner-filter{border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--muted);padding:11px 3px;font-weight:800;font-size:11px;display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;min-width:0}.planner-filter span{font-size:11px;opacity:.7}.planner-filter.selected{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}.planner-all-tasks{max-height:390px;overflow:auto;scrollbar-width:thin}.planner-manager .task-line{border-left:4px solid var(--task-accent);padding:12px 9px 12px 12px;margin-bottom:9px;border-bottom:1px solid var(--line);background:var(--paper);border-radius:12px;gap:9px}.priority-low{--task-accent:#85a69b}.priority-medium{--task-accent:#d4b36d}.priority-high{--task-accent:#d48e55}.priority-urgent{--task-accent:#cf6962}.task-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}.priority-badge,.status-late,.status-done{font-size:9px;font-weight:800;padding:4px 8px;border-radius:30px;background:color-mix(in srgb,var(--task-accent) 17%,var(--paper));color:var(--ink)}.status-late{background:#f3dad9;color:#913b37}.status-done{background:#d9eddb;color:#28633b}.priority-editor{font-size:10px!important;color:var(--muted)!important;margin:7px 0 0!important;display:flex!important;align-items:center;gap:7px;font-weight:600!important}.priority-editor select{width:auto!important;max-width:115px;min-height:27px;font-size:11px;padding:3px 7px;border-radius:8px;background:var(--soft)}.planner-priority-note{display:flex;flex-wrap:wrap;gap:6px;margin:17px 0 8px!important}.priority-key{font-size:10px;font-weight:800;padding:5px 8px;border-radius:8px;border-left:4px solid var(--task-accent);background:var(--soft);color:var(--ink)}.planner-helper{font-size:11px;color:var(--muted);line-height:1.6}.planner-list .task-line{border-left:4px solid var(--task-accent);padding-left:9px}.task-line.is-complete{opacity:.78}.task-line.is-late:not(.is-complete) .task-details strong{color:var(--ink)}
 @media(max-width:480px){.planner-manager{padding:17px 12px!important}.planner-manager .task-line{padding:11px 6px}.planner-filter{font-size:10px}.priority-editor select{max-width:90px}}
+
+/* Real progress-driven gauge: CSS conic fill instead of a static decorative border. */
+.hero-score{position:relative;flex-shrink:0;border:0!important;background:conic-gradient(#659c73 0 var(--progress),#ffffffc7 var(--progress) 100%)!important;padding:8px;border-radius:50%;transition:background .3s}
+.hero-score-inner{background:#eff6e9;border-radius:50%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.balance-breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:11px 0 15px}
+.balance-breakdown span{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:9px 8px;white-space:nowrap;min-width:0}
+:root[data-theme="dark"] .hero-score-inner{background:#314a39}
+@media(max-width:480px){.balance-breakdown{gap:6px}.balance-breakdown span{font-size:9px;padding:8px 5px}}
 </style></head><body>
 <div class="ambient-layer" aria-hidden="true"><span class="glow-ball"></span><span class="ambient-blob"></span></div>
 <header class="site-header">
@@ -195,7 +203,18 @@ var doneMeals=function(k){return getMeals(k).filter(function(m){return !!m.actua
 var mealScore=function(k){var m=getMeals(k),completed=m.filter(function(x){return x.actual});if(!completed.length)return null;return Math.round(100*completed.filter(function(x){return Math.abs(minutes(x.time)-minutes(x.actual))<=S.goals.mealWindow}).length/completed.length)};
 var minutes=function(t){var a=t.split(':').map(Number);return a[0]*60+a[1]};
 var check=function(k){return S.checks[k]};
-var balance=function(k){var tasks=S.tasks.filter(function(t){return t.date===k}),done=tasks.filter(function(t){return t.done}).length,sl=check(k)&&Number(check(k).sleep||0);return Math.min(100,Math.round(25*(tasks.length?done/tasks.length:0.5)+25*Math.min(1,move(k)/S.goals.activity)+25*doneMeals(k)/3+25*(sl?Math.min(sl/8,1):0.5)))};
+// Progress score reflects actions users actually log; mood quality does NOT affect points.
+function balanceParts(k){
+  var tasks=S.tasks.filter(function(t){return t.date===k}),completed=tasks.filter(function(t){return !!t.done}).length;
+  var checkin=check(k),hasCheckin=!!(checkin&&Number(checkin.mood)>=1&&Number(checkin.mood)<=5);
+  var movementGoal=Math.max(1,Number(S.goals.activity)||30);
+  var taskPts=tasks.length?40*completed/tasks.length:0;
+  var checkPts=hasCheckin?20:0;
+  var movementPts=20*Math.min(1,Math.max(0,move(k))/movementGoal);
+  var mealPts=20*Math.min(1,doneMeals(k)/3);
+  return {score:Math.max(0,Math.min(100,Math.round(taskPts+checkPts+movementPts+mealPts))),done:completed,total:tasks.length,checkin:hasCheckin,movement:move(k),meals:doneMeals(k)}
+}
+var balance=function(k){return balanceParts(k).score};
 var card=function(title,body){return '<section class="panel"><h2>'+title+'</h2>'+body+'</section>'};
 var metric=function(n,t){return '<div class="metric"><b>'+esc(n)+'</b><span>'+t+'</span></div>'};
 
@@ -235,7 +254,7 @@ if(page==='mood'){out=moodDial()}
 if(page==='celebrate'){out=celebrationScreen(celebratedMood)}
 if(page==='today'){out='<section class="checkin-compact"><div><span class="dashboard-eyebrow">TODAY’S CHECK-IN</span><h2>'+ (checkToday&&checkToday.mood?moodFaces[checkToday.mood-1]+' '+moodNames[checkToday.mood-1]:'How are you feeling?')+'</h2><p>'+(checkToday&&checkToday.mood?'Thanks for checking in with yourself today.':'A moment for yourself can go a long way.')+'</p></div><button data-page="mood" class="checkin-update">'+(checkToday&&checkToday.mood?'Change mood ↗':'Check in ↗')+'</button></section>'+
 '<div class="dashboard-top"><span class="dashboard-eyebrow">YOUR WELL-BEING TODAY</span><h1>Find your <em>balance.</em></h1><p class="muted">A little progress every day makes a difference.</p></div>'+
-'<div class="balance-hero"><div class="hero-score"><span class="hero-score-num">'+balance(today)+'<small>%</small></span><span class="hero-score-label">Daily balance</span></div><div class="hero-score-copy"><strong>Every step matters.</strong><span>Make time for what helps you feel good.</span><button class="hero-small-action" data-page="plan">Plan your day <span>↗</span></button></div></div>'+
+'<div class="balance-hero"><div class="hero-score" role="img" aria-label="Daily balance score '+balance(today)+' percent" style="--progress:'+balance(today)+'%"><div class="hero-score-inner"><span class="hero-score-num">'+balance(today)+'<small>%</small></span><span class="hero-score-label">Daily balance</span></div></div><div class="hero-score-copy"><strong>Every step matters.</strong><span>Make time for what helps you feel good.</span><button class="hero-small-action" data-page="plan">Plan your day <span>↗</span></button></div></div><div class="balance-breakdown"><span>✓ Tasks '+balanceParts(today).done+'/'+balanceParts(today).total+'</span><span>♡ Check-in '+(balanceParts(today).checkin?'done':'pending')+'</span><span>↗ Movement '+Math.min(100,Math.round(100*balanceParts(today).movement/Math.max(1,S.goals.activity)))+'%</span><span>✿ Meals '+balanceParts(today).meals+'/3</span></div>'+
 '<div class="dashboard-mini-grid"><button class="mini-stat" data-page="health"><span class="mini-icon">↗</span><strong>'+active+' <small>min</small></strong><span>Movement</span></button><button class="mini-stat" data-page="meals"><span class="mini-icon">✿</span><strong>'+doneMeals(today)+'/3</strong><span>Meals today</span></button></div>'+
 '<section class="dashboard-section"><div class="section-heading"><div><span class="dashboard-eyebrow">GENTLE REMINDER</span><h2>A moment for you</h2></div><span class="simple-leaf">✳</span></div><p>'+(active<S.goals.activity?'Your body deserves a little movement today. Even a quick stretch counts.':'Lovely work moving today. Give yourself time to rest as well.')+'</p><button class="soft-action" data-page="health">Track your movement <span>↗</span></button></section>'+
 '<section class="dashboard-section"><div class="section-heading"><div><span class="dashboard-eyebrow">STAY ON TRACK</span><h2>Today’s plan</h2></div><button class="text-action" data-page="plan">View all ↗</button></div>'+tasksHTML(today)+'</section>'+
