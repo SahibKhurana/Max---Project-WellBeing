@@ -273,12 +273,34 @@ document.addEventListener('submit',function(e){if(e.target.id==='profileForm'){e
 if(e.target.id==='friendForm'){e.preventDefault();var g=new FormData(e.target);S.friends.push({id:id(),name:String(g.get('name')).trim().slice(0,35),code:String(g.get('code')).trim().slice(0,35)})}
 if(e.target.id==='checkForm'){e.preventDefault();var c=new FormData(e.target);S.checks[today]={mood:Number(c.get('mood')),stress:Number(c.get('stress')),sleep:Number(c.get('sleep')),note:String(c.get('note')).slice(0,1000)};moodDraft=null}
 save();render()});
-document.addEventListener('change',function(e){if(e.target.name==='reminder'){var wrap=document.getElementById('customReminderWrap');if(wrap)wrap.hidden=e.target.value!=='custom';return}
-if(e.target.id==='themeSelect'){S.theme=e.target.value}
-if(e.target.id==='planDate'||e.target.id==='mealDate'){day=e.target.value;render();return}
-if(e.target.hasAttribute('data-mealtime'))getMeals(day)[Number(e.target.dataset.mealtime)].time=e.target.value;
-if(e.target.hasAttribute('data-mealactual'))getMeals(day)[Number(e.target.dataset.mealactual)].actual=e.target.value;
-save();render()});
+document.addEventListener('change',function(e){
+  var target=e.target;
+  // CRITICAL: Never rerender for task form inputs. A blur/change must NOT
+  // destroy the form before its submit event or time-picker button click.
+  if(target.closest('#taskForm')){
+    if(target.name==='reminder'){
+      var wrap=document.getElementById('customReminderWrap');
+      if(wrap)wrap.hidden=target.value!=='custom';
+    }
+    return;
+  }
+  if(target.id==='themeSelect'){S.theme=target.value;save();render();return}
+  if(target.id==='planDate'||target.id==='mealDate'){
+    if(target.value)day=target.value;
+    render();
+    return;
+  }
+  if(target.hasAttribute('data-mealtime')){
+    getMeals(day)[Number(target.dataset.mealtime)].time=target.value;
+    save();render();return;
+  }
+  if(target.hasAttribute('data-mealactual')){
+    getMeals(day)[Number(target.dataset.mealactual)].actual=target.value;
+    save();render();return;
+  }
+  // Other form inputs (profile, moods, sleep, etc.) are owned by their forms.
+  // Do not rerender on their individual change/blur events either.
+});
 $('startJourney').onclick=function(){page='welcome';render();$('appPreview').scrollIntoView({behavior:'smooth',block:'start'})};
 $('jumpApp').onclick=function(){page='welcome';render();$('appPreview').scrollIntoView({behavior:'smooth',block:'start'})};
 $('homeLink').onclick=function(){window.scrollTo({top:0,behavior:'smooth'})};
